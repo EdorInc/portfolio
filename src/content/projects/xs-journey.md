@@ -5,7 +5,7 @@ summary: "Top-down action-puzzle game experience developed — concept, design, 
 category: personal
 status: wip
 cover: /projects/xs-journey/cover.png
-videoUrl: /projects/xs-journey/trailer.mp4
+videoUrl: https://youtu.be/ZbHPfG3hi-0
 year: 2025
 engine: "Unity"
 role: ["Game Designer", "Developer"]

@@ -19,6 +19,13 @@ const {
   team, about, contributions,
 } = project.data;
 
+// Detect YouTube URLs and extract embed ID
+function getYouTubeId(url: string): string | null {
+  const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/))([A-Za-z0-9_-]{11})/);
+  return match ? match[1] : null;
+}
+const youtubeId = videoUrl ? getYouTubeId(videoUrl) : null;
+
 const statusLabel: Record<string, string> = {
   released: 'Released',
   wip: 'In Development',
@@ -89,7 +96,17 @@ const statusLabel: Record<string, string> = {
 
         <!-- Right: media -->
         <div class="rounded-2xl overflow-hidden border border-surface-border bg-surface-elevated">
-          {videoUrl ? (
+          {youtubeId ? (
+            <div class="aspect-video">
+              <iframe
+                src={`https://www.youtube.com/embed/${youtubeId}`}
+                title={title}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+                class="w-full h-full block"
+              ></iframe>
+            </div>
+          ) : videoUrl ? (
             <video
               src={videoUrl}
               poster={cover}

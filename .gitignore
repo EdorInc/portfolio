@@ -6,3 +6,8 @@ node_modules/
 .DS_Store
 *.local
 .astro/
+
+# Large video files
+public/**/*.mp4
+public/**/*.mov
+public/**/*.webm
