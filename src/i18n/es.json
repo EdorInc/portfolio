@@ -1,0 +1,71 @@
+{
+  "nav": {
+    "projects": "Proyectos",
+    "skills": "Habilidades",
+    "about": "Sobre mí",
+    "contact": "Contacto",
+    "cv": "Descargar CV"
+  },
+  "hero": {
+    "greeting": "Hola, soy",
+    "name": "Eduardo Yergas",
+    "role": "Diseñador de Videojuegos",
+    "tagline": "Diseñando sistemas, niveles y experiencias que perduran.",
+    "cta_projects": "Ver mis proyectos",
+    "cta_cv": "Descargar CV"
+  },
+  "about": {
+    "title": "Sobre mí",
+    "bio": "Desde que tengo memoria, los videojuegos han sido mucho más que entretenimiento para mí. Siempre me ha fascinado cómo una experiencia interactiva puede evocar emociones, crear recuerdos y conectar con las personas de formas únicas. Con el tiempo, esa pasión evolucionó hacia un interés más profundo por entender lo que hay detrás de cada juego: desde el diseño de sus mecánicas hasta la manera en que cada nivel funciona como un puzzle cuidadosamente diseñado. Me apasiona analizar cómo sistemas, reglas y mecánicas pueden trabajar juntos para crear experiencias fluidas y memorables — y eso es exactamente donde quiero contribuir."
+  },
+  "projects": {
+    "title": "Proyectos",
+    "filters": {
+      "all": "Todos",
+      "jam": "Game Jam",
+      "personal": "Personal",
+      "academic": "Académico"
+    },
+    "wip": "En desarrollo",
+    "view_project": "Ver proyecto",
+    "view_itch": "Jugar en itch.io"
+  },
+  "skills": {
+    "title": "Qué hago",
+    "areas": {
+      "design": {
+        "title": "Diseño de Juego",
+        "description": "Sistemas, mecánicas y loops que crean experiencias significativas.",
+        "items": ["Diseño de sistemas", "Mecánicas de gameplay", "Balance y playtesting", "Documentación de diseño (GDDs)"]
+      },
+      "technical": {
+        "title": "Technical Design",
+        "description": "Conectando diseño y código con Blueprints y herramientas de engine.",
+        "items": ["Unreal Engine / Blueprints", "Unity", "Prototipado", "Scripting de herramientas"]
+      },
+      "level": {
+        "title": "Diseño de Niveles",
+        "description": "Espacios que guían, sorprenden y dan agencia al jugador.",
+        "items": ["Blockouts y greyboxing", "Ritmo y pacing", "Documentación de niveles"]
+      },
+      "qa": {
+        "title": "QA & Testing",
+        "description": "Encontrando lo que rompe la experiencia antes que el jugador.",
+        "items": ["Testing funcional", "Reporte de bugs", "SonarQube / SonarLint", "Vitest"]
+      }
+    }
+  },
+  "tools": {
+    "title": "Herramientas & Tech"
+  },
+  "contact": {
+    "title": "Hablemos",
+    "subtitle": "Abierto a roles junior de diseño, QA, technical design y colaboraciones en game jams.",
+    "email_label": "Email",
+    "linkedin_label": "LinkedIn"
+  },
+  "footer": {
+    "made_by": "Hecho por Eduardo Yergas",
+    "rights": "Todos los derechos reservados"
+  }
+}

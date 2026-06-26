@@ -1,0 +1,61 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+}
+
+const { project } = Astro.props;
+const { title, category, status, cover, about, team, summary } = project.data;
+const slug = project.slug;
+
+const categoryLabel: Record<string, string> = {
+  jam: 'Game Jam',
+  personal: 'Personal Project',
+  academic: 'Academic',
+  professional: 'Professional',
+};
+
+const subtitle = team ?? categoryLabel[category] ?? category;
+const description = summary ?? about?.[0] ?? '';
+---
+
+<a
+  href={`/projects/${slug}`}
+  class="group block rounded-2xl overflow-hidden border border-surface-border hover:border-primary/60 hover:ring-1 hover:ring-primary/30 hover:shadow-lg transition-all duration-300"
+  data-category={category}
+>
+  <!-- Image + hover overlay -->
+  <div class="aspect-[16/7.5] relative overflow-hidden bg-surface-border">
+    {cover ? (
+      <img
+        src={cover}
+        alt={title}
+        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+        loading="lazy"
+      />
+    ) : (
+      <div class="w-full h-full flex items-center justify-center bg-surface-elevated">
+        <span class="font-mono text-text-muted text-xs">No cover yet</span>
+      </div>
+    )}
+
+
+    <!-- Description overlay: slides up on hover -->
+    {description && (
+      <div class="absolute inset-x-0 bottom-0 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out">
+        <div class="bg-gradient-to-t from-black/90 via-black/75 to-transparent pt-12 pb-5 px-5">
+          <p class="text-white text-sm leading-relaxed line-clamp-3">{description}</p>
+        </div>
+      </div>
+    )}
+  </div>
+
+  <!-- Title + subtitle -->
+  <div class="px-5 py-4 bg-surface-elevated">
+    <h3 class="font-bold text-base leading-tight group-hover:text-primary transition-colors duration-200 mb-1">
+      {title}
+    </h3>
+    <p class="text-text-muted text-sm">{subtitle}</p>
+  </div>
+</a>

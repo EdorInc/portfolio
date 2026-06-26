@@ -1,0 +1,20 @@
+---
+import type { Lang } from '@/i18n/utils';
+
+interface Props {
+  lang: Lang;
+  alternates: Record<Lang, string>;
+}
+
+const { lang, alternates } = Astro.props;
+const otherLang: Lang = lang === 'en' ? 'es' : 'en';
+const otherHref = otherLang === 'en' ? alternates.en : alternates.es;
+---
+
+<a
+  href={otherHref}
+  class="font-sans text-xs font-semibold text-text-muted border border-surface-border px-2 py-1 rounded hover:border-primary hover:text-primary transition-all duration-200 uppercase tracking-widest"
+  aria-label={`Switch to ${otherLang === 'en' ? 'English' : 'Español'}`}
+>
+  {otherLang}
+</a>

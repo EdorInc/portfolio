@@ -1,0 +1,45 @@
+---
+import Button from '@/components/ui/Button.astro';
+import { t } from '@/i18n/utils';
+
+const tr = t('en');
+---
+
+<section id="hero" class="relative min-h-screen flex items-center section-padding pt-32 bg-surface-elevated border-b border-surface-border">
+  <div class="container-max w-full">
+    <div class="max-w-3xl">
+      <!-- Label -->
+      <p class="font-sans text-sm text-primary font-semibold tracking-widest uppercase mb-6 animate-fade-up">
+        {tr.hero.greeting} Eduardo.
+      </p>
+
+      <!-- Headline -->
+      <h1 class="text-5xl md:text-7xl font-black tracking-tight leading-none mb-6 animate-fade-up text-text" style="animation-delay: 0.1s; opacity: 0; animation-fill-mode: forwards;">
+        {tr.hero.role}
+      </h1>
+
+      <!-- Tagline -->
+      <p class="text-xl md:text-2xl text-text-muted max-w-xl mb-10 font-body animate-fade-up" style="animation-delay: 0.2s; opacity: 0; animation-fill-mode: forwards;">
+        {tr.hero.tagline}
+      </p>
+
+      <!-- CTAs -->
+      <div class="flex flex-wrap gap-4 animate-fade-up" style="animation-delay: 0.3s; opacity: 0; animation-fill-mode: forwards;">
+        <Button href="/#projects" variant="primary">
+          {tr.hero.cta_projects}
+        </Button>
+        <Button href="/#contact" variant="outline">
+          Get in touch
+        </Button>
+      </div>
+    </div>
+
+    <!-- Scroll hint -->
+    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-text-muted animate-bounce">
+      <span class="font-mono text-xs tracking-widest">SCROLL</span>
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M8 3v10M4 9l4 4 4-4" />
+      </svg>
+    </div>
+  </div>
+</section>

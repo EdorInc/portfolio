@@ -1,0 +1,157 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Tag from '@/components/ui/Tag.astro';
+import Button from '@/components/ui/Button.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const {
+  title, role, tags, year, engine, status,
+  cover, videoUrl, itchUrl, repoUrl, steamUrl,
+  team, about, contributions,
+} = project.data;
+
+const statusLabel: Record<string, string> = {
+  released: 'Released',
+  wip: 'In Development',
+};
+---
+
+<BaseLayout title={`${title} — Eduardo Yergas`}>
+  <article class="pt-28 pb-24">
+
+    <!-- ═══════════════════════════════════════════
+         HERO: title left / image right
+    ════════════════════════════════════════════ -->
+    <div class="container-max px-6 md:px-12">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start mb-16">
+
+        <!-- Left: title + specs -->
+        <div>
+          <!-- Back -->
+          <a href="/#projects" class="inline-flex items-center gap-2 text-sm text-text-muted hover:text-primary mb-8 transition-colors">
+            ← Back
+          </a>
+
+          <!-- Title -->
+          <h1 class="text-5xl md:text-6xl font-black tracking-tight leading-none mb-4">
+            {title}
+          </h1>
+          <p class="text-text-muted mb-10">{role.join(' · ')}</p>
+
+          <!-- Specs grid -->
+          <div class="grid grid-cols-2 gap-x-8 gap-y-5 border-t border-surface-border pt-8">
+            <div>
+              <span class="font-mono text-[10px] text-text-muted uppercase tracking-widest block mb-1">Status</span>
+              <span class="text-sm font-semibold">{statusLabel[status] ?? status}</span>
+            </div>
+            <div>
+              <span class="font-mono text-[10px] text-text-muted uppercase tracking-widest block mb-1">Year</span>
+              <span class="text-sm font-semibold">{year}</span>
+            </div>
+            {engine && (
+              <div>
+                <span class="font-mono text-[10px] text-text-muted uppercase tracking-widest block mb-1">Engine</span>
+                <span class="text-sm font-semibold">{engine}</span>
+              </div>
+            )}
+            {team && (
+              <div>
+                <span class="font-mono text-[10px] text-text-muted uppercase tracking-widest block mb-1">Studio</span>
+                <span class="text-sm font-semibold">{team}</span>
+              </div>
+            )}
+            <div class="col-span-2">
+              <span class="font-mono text-[10px] text-text-muted uppercase tracking-widest block mb-2">Tags</span>
+              <div class="flex flex-wrap gap-2">
+                {tags.map((tag) => <Tag label={tag} />)}
+              </div>
+            </div>
+          </div>
+
+          <!-- Action buttons -->
+          {(itchUrl || repoUrl || steamUrl) && (
+            <div class="flex flex-wrap gap-3 mt-8">
+              {steamUrl && <Button href={steamUrl} variant="primary" target="_blank">View on Steam ↗</Button>}
+              {itchUrl && <Button href={itchUrl} variant="primary" target="_blank">Play on itch.io ↗</Button>}
+              {repoUrl && <Button href={repoUrl} variant="outline" target="_blank">Repository ↗</Button>}
+            </div>
+          )}
+        </div>
+
+        <!-- Right: media -->
+        <div class="rounded-2xl overflow-hidden border border-surface-border bg-surface-elevated">
+          {videoUrl ? (
+            <video
+              src={videoUrl}
+              poster={cover}
+              controls
+              preload="metadata"
+              class="w-full block"
+            >
+              Your browser does not support the video tag.
+            </video>
+          ) : cover ? (
+            <img src={cover} alt={title} class="w-full object-cover block" />
+          ) : (
+            <div class="aspect-video flex items-center justify-center">
+              <span class="font-mono text-text-muted text-xs">No cover yet</span>
+            </div>
+          )}
+        </div>
+
+      </div>
+
+      <!-- ═══════════════════════════════════════════
+           ABOUT
+      ════════════════════════════════════════════ -->
+      {about && about.length > 0 && (
+        <section class="mb-20 border-t border-surface-border pt-16 max-w-2xl">
+          <h2 class="font-mono text-xs text-text-muted uppercase tracking-widest mb-8">About</h2>
+          <ul class="space-y-4">
+            {about.map((point) => (
+              <li class="flex items-start gap-4">
+                <span class="w-1.5 h-1.5 rounded-full bg-primary shrink-0 mt-2"></span>
+                <p class="text-text-muted leading-relaxed">{point}</p>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      <!-- ═══════════════════════════════════════════
+           MY CONTRIBUTION
+      ════════════════════════════════════════════ -->
+      {contributions && contributions.length > 0 && (
+        <section class="border-t border-surface-border pt-16">
+          <h2 class="font-mono text-xs text-text-muted uppercase tracking-widest mb-8">My Contribution</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {contributions.map((card) => (
+              <div class="bg-surface-elevated border border-surface-border rounded-2xl p-8 hover:border-primary/60 transition-colors duration-300 shadow-sm">
+                <h3 class="text-lg font-bold mb-2">{card.title}</h3>
+                <p class="text-text-muted text-sm mb-6">{card.description}</p>
+                <ul class="space-y-2">
+                  {card.items.map((item) => (
+                    <li class="flex items-center gap-3 text-sm">
+                      <span class="w-1.5 h-1.5 rounded-full bg-primary shrink-0"></span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+    </div>
+  </article>
+</BaseLayout>

@@ -1,0 +1,81 @@
+---
+import { t } from '@/i18n/utils';
+
+const tr = t('en');
+
+const education = [
+  {
+    degree: "Master's in Video Game Design (in progress)",
+    school: 'Universidad Complutense de Madrid (UCM)',
+    year: '2024 – present',
+  },
+  {
+    degree: "Bachelor's in Computer Engineering (Software Engineering Specialization)",
+    school: 'Universidad de Castilla-La Mancha (UCLM)',
+    year: '2019 – 2024',
+  },
+];
+---
+
+<section id="about" class="section-padding">
+  <div class="container-max">
+
+    <!-- Top row: bio + photo -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-16">
+
+      <!-- Bio -->
+      <div>
+        <h2 class="text-4xl md:text-5xl font-black mb-8">{tr.about.title}</h2>
+        <p class="text-lg text-text-muted leading-relaxed">
+          {tr.about.bio}
+        </p>
+      </div>
+
+      <!-- Photo -->
+      <div class="flex justify-center lg:justify-end">
+        <div class="w-80 h-80 md:w-96 md:h-96 rounded-full overflow-hidden border-4 border-surface-border ring-4 ring-accent-yellow/30 shadow-xl">
+          <img
+            src="/avatar.jpeg"
+            alt="Eduardo Yergas"
+            class="w-full h-full object-cover object-[center_100%] scale-150"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom row: education + languages -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 pt-12 border-t border-surface-border">
+
+      <!-- Education -->
+      <div>
+        <h3 class="font-mono text-xs text-text-muted uppercase tracking-widest mb-6">Education</h3>
+        <div class="space-y-6">
+          {education.map(({ degree, school, year }) => (
+            <div class="border-l-2 border-accent-yellow pl-5 hover:border-primary transition-colors duration-300">
+              <p class="font-semibold text-sm mb-1">{degree}</p>
+              <p class="text-text-muted text-sm">{school}</p>
+              <p class="font-mono text-xs text-text-muted mt-1">{year}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Languages -->
+      <div>
+        <h3 class="font-mono text-xs text-text-muted uppercase tracking-widest mb-6">Languages</h3>
+        <div class="flex gap-8">
+          <div class="text-sm">
+            <p class="font-semibold">Spanish</p>
+            <p class="text-text-muted">Native</p>
+          </div>
+          <div class="w-px bg-surface-border"></div>
+          <div class="text-sm">
+            <p class="font-semibold">English</p>
+            <p class="text-text-muted">C2 · Cambridge</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

@@ -1,0 +1,12 @@
+---
+import { t } from '@/i18n/utils';
+
+const tr = t('en');
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-surface-border py-8 bg-surface-elevated">
+  <div class="container-max px-6 md:px-12 flex items-center justify-center text-sm text-text-muted">
+    <span>{tr.footer.made_by} · {year}</span>
+  </div>
+</footer>

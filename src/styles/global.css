@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    scroll-behavior: smooth;
+    font-size: 19px;
+  }
+
+  body {
+    @apply bg-surface text-text font-body antialiased;
+    /* Parchment: fondo crema, texto oliva oscuro */
+  }
+
+  ::selection {
+    @apply bg-primary text-white;
+  }
+
+  /* Títulos: IBM Plex Mono */
+  h1, h2, h3, h4 {
+    @apply font-mono font-bold tracking-tight text-text;
+  }
+
+  /* Subtítulos y UI: Syne */
+  nav, button, label {
+    @apply font-sans;
+  }
+}
+
+@layer utilities {
+  .section-padding {
+    @apply px-6 py-24 md:px-12 lg:px-24;
+  }
+
+  .container-max {
+    @apply max-w-6xl mx-auto;
+  }
+}
+
+/* Fade-up animation for Hero */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up {
+  animation: fade-up 0.5s ease forwards;
+}
+
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@700&family=Syne:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap');

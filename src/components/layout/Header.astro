@@ -1,0 +1,59 @@
+---
+import { t } from '@/i18n/utils';
+
+const tr = t('en');
+
+const navLinks = [
+  { href: '/#projects', label: tr.nav.projects },
+  { href: '/#skills',   label: tr.nav.skills },
+  { href: '/#about',    label: tr.nav.about },
+  { href: '/#contact',  label: tr.nav.contact },
+];
+---
+
+<header
+  id="header"
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+>
+  <div class="container-max flex items-center justify-between px-6 py-4 md:px-12">
+    <!-- Logo / name -->
+    <a href="/" class="font-mono text-sm font-bold text-primary tracking-widest uppercase">
+      EDUARDO YERGAS
+    </a>
+
+    <!-- Desktop nav -->
+    <nav class="hidden md:flex items-center gap-8">
+      {navLinks.map(({ href, label }) => (
+        <a
+          href={href}
+          class="text-sm font-sans text-text-muted hover:text-text transition-colors duration-200"
+        >
+          {label}
+        </a>
+      ))}
+    </nav>
+
+    <!-- Right side: CV -->
+    <div class="flex items-center gap-4">
+      <a
+        href="/cv.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hidden md:inline-flex items-center gap-2 text-sm font-sans font-medium bg-primary text-white px-4 py-2 rounded-full hover:bg-primary-dark transition-all duration-200"
+      >
+        {tr.nav.cv}
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  const header = document.getElementById('header');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      header?.classList.add('bg-surface/90', 'backdrop-blur-md', 'border-b', 'border-surface-border');
+    } else {
+      header?.classList.remove('bg-surface/90', 'backdrop-blur-md', 'border-b', 'border-surface-border');
+    }
+  });
+</script>

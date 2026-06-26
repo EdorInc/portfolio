@@ -1,0 +1,47 @@
+---
+import Tag from '@/components/ui/Tag.astro';
+import { t } from '@/i18n/utils';
+
+const tr = t('en');
+
+const tools = [
+  'Unreal Engine', 'Unity', 'Blueprints', 'Blender',
+  'Miro', 'Notion', 'Visual Paradigm', 'GitHub',
+  'Jira', 'Perforce', 'Scrum', 'SonarQube',
+  'Vitest', 'C/C++', 'JavaScript', 'Python',
+];
+
+const areas = Object.values(tr.skills.areas);
+---
+
+<section id="skills" class="section-padding bg-surface-elevated border-y border-surface-border">
+  <div class="container-max">
+    <h2 class="text-4xl md:text-5xl font-black mb-16">{tr.skills.title}</h2>
+
+    <!-- Design areas grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-20">
+      {areas.map((area) => (
+        <div class="bg-surface border border-surface-border rounded-2xl p-8 hover:border-primary/60 transition-colors duration-300 shadow-sm">
+          <h3 class="text-xl font-bold mb-2">{area.title}</h3>
+          <p class="text-text-muted text-sm mb-6">{area.description}</p>
+          <ul class="space-y-2">
+            {area.items.map((item) => (
+              <li class="flex items-center gap-3 text-sm">
+                <span class="w-1.5 h-1.5 rounded-full bg-primary shrink-0"></span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+
+    <!-- Tools cloud -->
+    <div>
+      <h3 class="font-mono text-sm text-text-muted uppercase tracking-widest mb-6">{tr.tools.title}</h3>
+      <div class="flex flex-wrap gap-3">
+        {tools.map((tool) => <Tag label={tool} />)}
+      </div>
+    </div>
+  </div>
+</section>

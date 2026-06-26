@@ -1,0 +1,38 @@
+---
+import Button from '@/components/ui/Button.astro';
+import { t } from '@/i18n/utils';
+
+const tr = t('en');
+---
+
+<section id="contact" class="section-padding bg-surface-elevated border-t border-surface-border">
+  <div class="container-max">
+    <div class="max-w-xl mx-auto text-center">
+      <h2 class="text-4xl md:text-5xl font-black mb-4">{tr.contact.title}</h2>
+      <p class="text-text-muted text-lg mb-10">{tr.contact.subtitle}</p>
+
+      <!-- Contact details -->
+      <div class="flex flex-col items-center gap-3 mb-10 font-mono text-sm text-text-muted">
+        <span>eduyer2000@hotmail.com</span>
+        <span>+34 673 140 391</span>
+      </div>
+
+      <!-- Buttons -->
+      <div class="flex flex-col sm:flex-row justify-center gap-4">
+        <Button href="mailto:eduyer2000@hotmail.com" variant="primary">
+          {tr.contact.email_label} ↗
+        </Button>
+        <Button
+          href="https://www.linkedin.com/in/eduardo-yergas-amelkin-2259a9307"
+          variant="primary"
+          target="_blank"
+        >
+          LinkedIn ↗
+        </Button>
+        <Button href="tel:+34673140391" variant="primary">
+          Call
+        </Button>
+      </div>
+    </div>
+  </div>
+</section>
